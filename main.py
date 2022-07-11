@@ -10,36 +10,71 @@ Additionally, besides films being divided into typical film categories,
 they also have medium/high energy absorption category.
 """
 import random
+import time
+from os.path import exists
 
-# TODO: Go through git course, find out why you're committing to master even though main is the default one
+
+# Picks a random item from a list
+def pick_item(item, lst):
+    pass
+
+
+def check_if_exists(file):
+    if exists(file):
+        return True
+
+    if not exists(file):
+        print("Nothing to show")
+        return False
+
+
+# Prints contents of a file
+def view_items(file):
+    with open(file, "r", encoding="utf-8") as f:
+        content = f.read()
+        if content == "":
+            print("\nThe list is empty")
+        if content != "":
+            print(content)
+
+
+# Append an item to file contents
+def add_item(item, lst):
+    # Create file if it doesn't exist already
+    if not exists("films.txt"):
+        f = open("films.txt", "a")
+
+
+# Delete an item from file contents
+def del_item(item, lst):
+    pass
+
 
 def main():
-
-    movies = []
     close = False
+    films_file = "films.txt"
 
-    menu = "1. Generate a film \n2. See the watchlist \n3. Add a film to the watchlist \n" \
-           "4. Delete a film from the watchlist \n5. Exit\n"
+    menu = "\n1. Pick a film to watch \n2. View the watchlist \n3. Add a film to the watchlist \n" \
+           "4. Delete a film from the watchlist \n5. Exit"
 
     while not close:
-
         print(menu)
-
-        action = int(input("What action do you want to take? "))
+        action = int(input("\nWhat action do you want to take? "))
 
         match action:
             case 1:
                 print(action)
             case 2:
-                print(action)
+                view_items(films_file)
             case 3:
                 print(action)
             case 4:
                 print(action)
-            case 5:     # Quitting case
+            case 5:
                 close = True
                 print("Goodbye!")
 
+        # time.sleep(1.5)
     return 0
 
 
