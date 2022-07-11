@@ -30,12 +30,18 @@ def check_if_exists(file):
 
 # Prints contents of a file
 def view_items(file):
+    content = []
+    empty = []
+
     with open(file, "r", encoding="utf-8") as f:
-        content = f.read()
-        if content == "":
-            print("\nThe list is empty")
-        if content != "":
-            print(content)
+        for line in f:
+            line = line.rstrip("\n")
+            content.append(line)
+
+        if content == empty:
+            print("\nThe file is empty")
+        if content != empty:
+            print("\n".join(content))
 
 
 # Append an item to file contents
@@ -60,6 +66,7 @@ def main():
     while not close:
         print(menu)
         action = int(input("\nWhat action do you want to take? "))
+        print()
 
         match action:
             case 1:
@@ -74,7 +81,9 @@ def main():
                 close = True
                 print("Goodbye!")
 
-        # time.sleep(1.5)
+        if not close:
+            input("\nPress enter to continue...")
+
     return 0
 
 
