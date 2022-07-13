@@ -1,62 +1,14 @@
-"""
-The goal of the programme is to store films to watch (watchlist) and to generate a watch proposal
-The user can type in a name of films from watchlist and the programme saves it
-The programme will remember the data input during the last runtime after rerunning
-The programme stores the film data in a .txt file locally (and possibly on a web based server in the future)
+# Films have medium/high energy absorption category which impact the pseudorandom picking process
 
-Base the program on OOP
-
-Additionally, besides films being divided into typical film categories,
-they also have medium/high energy absorption category.
-"""
+from os.path import exists
 import random
 import time
-from os.path import exists
-
-
-# Picks a random item from a list
-def pick_item(item, lst):
-    pass
-
-
-def check_if_exists(file):
-    if exists(file):
-        return True
-
-    if not exists(file):
-        print("Nothing to show")
-        return False
-
-
-# Prints contents of a file
-def view_items(file):
-    content = []
-    empty = []
-
-    with open(file, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.rstrip("\n")
-            content.append(line)
-
-        if content == empty:
-            print("\nThe file is empty")
-        if content != empty:
-            print("\n".join(content))
-
-
-# Append an item to file contents
-def add_item(item, lst):
-    # Create file if it doesn't exist already
-    if not exists("films.txt"):
-        f = open("films.txt", "a")
-
-
-# Delete an item from file contents
-def del_item(item, lst):
-    pass
+import Item
+import Film
 
 
 def main():
+
     close = False
     films_file = "films.txt"
 
@@ -72,7 +24,7 @@ def main():
             case 1:
                 print(action)
             case 2:
-                view_items(films_file)
+                print("File contents")
             case 3:
                 print(action)
             case 4:
